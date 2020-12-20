@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as ReactRedux from 'react-redux';
+
+import './index.css';
+
+import '../../heroway-facebook-react/src/components/layout/_main.css';
+
+import Header from './components/layout/Header';
+
+import configureStore from './redux/reducers/ConfigureStore';
+import Routes from './components/Routes';
+
+const store = configureStore();
 
 function App() {
+  const ReactReduxProvider = ReactRedux.Provider;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ReactReduxProvider store={store}>
+      <body>
+        <section className="main">
+          <Header/>
+          <Routes></Routes>
+          
+        </section>
+      </body>
+    </ReactReduxProvider>  
   );
-}
+};  
 
 export default App;
+
